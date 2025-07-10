@@ -47,4 +47,14 @@ SecondItem
     Click Button    id=back-to-products
     Sleep    time_=5
 
+InvalidLogIn
+    [Documentation]    Testing invalid login
+    [Teardown]    Close Browser    
+    Open Browser    url=${url_address}    browser=firefox
+    Maximize Browser Window
+    Input Text    locator=user-name    text=${user_name}
+    Input Password    locator=password    password=jojo
+    Click Button    locator=login-button
+    Wait Until Page Contains Element    xpath=//h3[contains(text(),'Epic sadface')]
+
     
