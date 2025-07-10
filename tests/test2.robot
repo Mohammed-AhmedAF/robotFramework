@@ -48,16 +48,7 @@ SecondItem
     Wait Until Page Contains Element    id=inventory_container
     Page Should Contain     Products
     Click Element     xpath=//div[contains(text(), 'Bike Light')]
-    Click Button    name=add-to-cart
-    Click Link    class=shopping_cart_link
-    Click Button    name=checkout
-    Input Text    id=first-name    text=${first_name}
-    Input Text    id=last-name    text=${last_name}
-    Input Text    id=postal-code    text=${postal_code}
-    Click Button    id=continue
-    Click Button    id=finish
-    Click Button    id=back-to-products
-    Sleep    time_=5
+    Go To Checkout
 
 InvalidLogIn
     [Documentation]    Testing invalid login
