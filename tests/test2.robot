@@ -1,6 +1,16 @@
 *** Settings ***
 Library    SeleniumLibrary
 
+*** Keywords ***
+Go To Checkout
+    Click Link    class=shopping_cart_link
+    Click Button    name=checkout
+    Input Text    id=first-name    text=${first_name}
+    Input Text    id=last-name    text=${last_name}
+    Input Text    id=postal-code    text=${postal_code}
+    Click Button    id=continue
+    Click Button    id=finish
+    Click Button    id=back-to-products
 
 *** Variables ***
 ${user_name}    standard_user
@@ -70,3 +80,4 @@ BuyingThreeItems
     FOR    ${item}    IN    @{items_to_buy}
         Click Button    id=${item}
     END
+    Go To Checkout
