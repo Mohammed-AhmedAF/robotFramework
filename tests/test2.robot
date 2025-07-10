@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 
+
 *** Variables ***
 ${user_name}    standard_user
 ${password}    secret_sauce
@@ -8,6 +9,7 @@ ${url_address}    https://www.saucedemo.com/
 ${first_name}    Mohamed
 ${last_name}    Ahmed
 ${postal_code}    51444
+@{items_to_buy}    add-to-cart-sauce-labs-backpack    add-to-cart-sauce-labs-bolt-t-shirt    add-to-cart-sauce-labs-onesie
 
 *** Test Cases ***
 FirstItem
@@ -57,4 +59,14 @@ InvalidLogIn
     Click Button    locator=login-button
     Wait Until Page Contains Element    xpath=//h3[contains(text(),'Epic sadface')]
 
-    
+BuyingThreeItems
+    [Documentation]    Putting three items in cart
+    [Teardown]    Close Browser    
+    Open Browser    url=${url_address}    browser=firefox
+    Maximize Browser Window
+    Input Text    locator=user-name    text=${user_name}
+    Input Password    locator=password    password=${password}
+    Click Button    locator=login-button
+    FOR    ${item}    IN    @{items_to_buy}
+        Click Button    id=${item}
+    END
